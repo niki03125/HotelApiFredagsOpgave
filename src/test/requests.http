@@ -1,0 +1,37 @@
+###---------eksempla-------------
+
+### Test root endpoint
+
+
+GET http://localhost:7007/api/v1/
+
+### GET all dogs
+GET http://localhost:7007/api/v1/dog
+
+### Create new dog
+POST http://localhost:7007/api/v1/dog
+Content-Type: application/json
+
+{
+    "id": 3,
+    "name": "Biver",
+    "breed": "Hund",
+    "gender": "MALE",
+    "age": 2
+}
+
+\\#Update dog by ID
+PUT http://localhost:7007/api/v1/dog/2
+Content-Type: application/json
+
+{
+  "id":2,
+  "name": "Freja Updated",
+  "breed": "Labrador Retriever",
+  "gender": "FEMALE",
+  "age": 4
+}
+
+### DElete dog by ID
+
+DELETE http://localhost:7007/api/v1/dog/2
