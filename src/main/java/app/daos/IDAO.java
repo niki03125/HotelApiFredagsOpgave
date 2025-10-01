@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface IDAO<T, I> {
 
-    T create(T t);
-    List<T> getAll();
-    T getById(I id);
-    T update(T t);
-    boolean delete(I id);
+    T createHotel(T t);
+    List<T> getAllHotels();
+    T getHotelById(I id);
+    T updateHotel(T t);
+    boolean deleteHotel(I id);
 }

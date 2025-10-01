@@ -3,35 +3,36 @@
 ### Test root endpoint
 
 
-GET http://localhost:7007/api/v1/
+GET http://localhost:7011/api/v1/
 
-### GET all dogs
-GET http://localhost:7007/api/v1/dog
+### GET all hotels
+GET http://localhost:7011/api/v1/hotel
 
-### Create new dog
-POST http://localhost:7007/api/v1/dog
+### Create new hotel
+POST http://localhost:7011/api/v1/hotel
 Content-Type: application/json
 
 {
-    "id": 3,
-    "name": "Biver",
-    "breed": "Hund",
-    "gender": "MALE",
-    "age": 2
+    "name": "New test hotel",
+    "address": "123 test street"
 }
+### Get hotel by id
+GET http://localhost:7011/api/v1/hotel/1
 
-\\#Update dog by ID
-PUT http://localhost:7007/api/v1/dog/2
+### Get rooms for hotel by id
+GET http://localhost:7011/api/v1/hotel/1/rooms
+
+
+###Update hotel by ID
+PUT http://localhost:7011/api/v1/hotel/2
 Content-Type: application/json
 
 {
-  "id":2,
-  "name": "Freja Updated",
-  "breed": "Labrador Retriever",
-  "gender": "FEMALE",
-  "age": 4
+  "name": "updated hotel",
+  "address": "updated add"
+
 }
 
 ### DElete dog by ID
 
-DELETE http://localhost:7007/api/v1/dog/2
+DELETE http://localhost:7011/api/v1/hotel/3
