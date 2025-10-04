@@ -18,6 +18,8 @@ public class SecurityDAO implements ISecurityDAO{
     public User getVerifiedUser(String username, String password) throws ValidationException {
         try(EntityManager em= emf.createEntityManager()){
             User foundUser = em.find(User.class, username);
+            foundUser.getRoles();
+
             if(foundUser != null && foundUser.verifyPassword(password)){
                 return foundUser;
             }else {

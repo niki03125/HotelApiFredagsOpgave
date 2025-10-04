@@ -45,5 +45,6 @@ public class User implements ISecurityUser{
     @Override
     public void removeRole(Role role) {
         this.roles.remove(role);
+        role.users.remove(this);
     }
 }
