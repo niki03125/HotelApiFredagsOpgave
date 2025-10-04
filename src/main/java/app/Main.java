@@ -7,15 +7,21 @@ import app.daos.HotelDAO;
 import app.dtos.HotelDTO;
 import app.dtos.RoomDTO;
 import app.entities.Hotel;
+import app.exceptions.ValidationException;
+import app.security.ISecurityDAO;
+import app.security.Role;
+import app.security.SecurityDAO;
+import app.security.User;
 import io.javalin.Javalin;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args)
-    {EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
-
+        {EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+        ISecurityDAO dao = new SecurityDAO(HibernateConfig.getEntityManagerFactory());
         HotelDAO hotelDAO = HotelDAO.getInstance(emf);
 
         // Lav 3 Hotels med 1 room hver
@@ -54,9 +60,27 @@ public class Main {
 
         // Start server
         final Javalin app = ApplicationConfig.startServer(7011);
+
+
+         User user = dao.createUser("user1", "pass123");
+         System.out.println(user.getUsername() +" + " + user.getPassword());
+
+        Role role = dao.createRole("User");
+        try {
+            User updatedUser = dao.addUserRole("user1", "User");
+            System.out.println(updatedUser);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            User validatedUser = dao.getVerifiedUser("user1", "pass123");
+            System.out.println("User was validated " + validatedUser.getUsername());
+        } catch (ValidationException e) {
+            throw new RuntimeException(e);
+        }
         // shutdown hook – så porten frigives hvis du lukker programmet
         Runtime.getRuntime().addShutdownHook(new Thread(() -> ApplicationConfig.stopServer(app)));
-
     }
 
 }

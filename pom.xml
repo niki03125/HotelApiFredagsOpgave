@@ -26,6 +26,7 @@
         <testcontainers.version>1.18.0</testcontainers.version>
         <hikari.version>5.1.0</hikari.version>
         <javalin.version>6.3.0</javalin.version>
+        <jbcrypt.version>0.4</jbcrypt.version>
 
         <!-- DATABASE PROJECT NAME ON SERVER  -->
         <db.name>highscoredemo</db.name>
@@ -156,6 +157,12 @@
             <artifactId>json-path</artifactId>
             <version>5.5.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>${jbcrypt.version}</version>
         </dependency>
     </dependencies>
 
